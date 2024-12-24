@@ -44,7 +44,7 @@ def register_student():
 def update_student():
 	global students, ids
 	
-	student_id = get_student_id()
+	student_id = get_student_id("UPD")
 	student = students.get(student_id)
 
 	for key in student.keys():
@@ -84,6 +84,7 @@ def add_mark(student_id):
 	global students, ids, students_marks
 
 	subjects = {"Mathematics": 0, "Science": 0, "English": 0, "Sinhala": 0}
+	student_id = get_student_id("NEW")
 
 	for key in subjects.keys():
 		while True:
@@ -102,6 +103,7 @@ def update_mark(student_id):
 	global students, ids, students_marks
 
 	subjects = {"Mathematics": 0, "Science": 0, "English": 0, "Sinhala": 0}
+	student_id = get_student_id("UPD")
 		
 	for key in subjects.keys():
 		while True:
@@ -157,7 +159,6 @@ def view_student():
 			print(f"   [{key.lower()}]: {value}({grade})")
 	else:
 		print("   [marks]: No marks available.")
-
 	
 	time.sleep(1)
 	input("Press any key to continue...")
