@@ -35,7 +35,6 @@ def register_student():
 				student.update({key: int(value)})
 			else:
 				student.update({key: value.title()})
-				print(key)
 
 	students.update({student.get("Student ID"): student})
 	ids.append(student.get("Student ID"))
@@ -152,9 +151,10 @@ def view_student():
 	for key, value in student.items():
 		print(f"   [{key.title()}]: {value}")
 
-	
 	if students_marks.get(student_id) != None:
 		for key, value in students_marks.get(student_id).items():
+			if key == "Student ID":
+				continue
 			grade = get_marks_grade(value)
 			print(f"   [{key.title()}]: {value} ({grade})")
 	else:
