@@ -21,12 +21,12 @@ def register_student():
 	student = {"Student ID": "", "Name": "", "Age": 0, "Grade": 0}
 
 	for key in student.keys():
-		value = input(f"   (NEW)[{key.lower()}]: ")
+		value = input(f"   (NEW)[{key.title()}]: ")
 
 		if key == "Student ID":
 
 			while ids.count(value) > 0:
-				value = input(f"   (NEW)[{key.lower()}]: ")
+				value = input(f"   (NEW)[{key.title()}]: ")
 			else:
 				student.update({key: value})
 
@@ -53,9 +53,9 @@ def update_student():
 			continue
 		
 		if key in ("Age", "Grade"):
-			student.update({key: int(input(f"   (UPD)[{key.lower()}]: "))})
+			student.update({key: int(input(f"   (UPD)[{key.title()}]: "))})
 		else:
-			student.update({key: input(f"   (UPD)[{key.lower()}]: ")})
+			student.update({key: input(f"   (UPD)[{key.title()}]: ")})
 
 	students.update({student_id: student})
 	print("Student information updated successfully.")
@@ -69,7 +69,7 @@ def remove_student():
 	for key, value in students.get(student_id).items():
 		if key == "Student ID":
 			continue
-		print(f"   [{key.lower()}]: {value}")
+		print(f"   [{key.title()}]: {value}")
 
 	is_confirmed = input("Are you sure you want to remove this student? (y/n): ")
 
@@ -88,7 +88,7 @@ def add_mark(student_id):
 
 	for key in subjects.keys():
 		while True:
-			mark = int(input(f"   ({student_id})[{key.lower()}]: "))
+			mark = int(input(f"   ({student_id})[{key.title()}]: "))
 			if mark < 0 or mark > 100:
 				print("Invalid mark. Please enter a valid mark.")
 			else:
@@ -158,7 +158,7 @@ def view_student():
 			grade = get_marks_grade(value)
 			print(f"   [{key.title()}]: {value} ({grade})")
 	else:
-		print("   [marks]: No marks available.")
+		print("   [Marks]: No marks available.")
 	
 	time.sleep(1)
 	input("Press any key to continue...")
@@ -167,6 +167,7 @@ students = {}
 students_marks = {}
 ids = []
 menu = """
+### ABC NATIONAL SCHOOL ###
 School Management System
 
 1. Register New Student
@@ -202,4 +203,5 @@ while True:
 	else:
 		if feature != 6:
 			print("Selected feature is not available.")
+		print("Exiting system...")
 		break
