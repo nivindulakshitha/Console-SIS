@@ -8,7 +8,7 @@ def get_student_id(keyword=""):
 	global students, ids
 
 	while True:
-		student_id = input(f"   ({keyword})[student id]: ")
+		student_id = input(f"   ({keyword})[Student ID]: ")
 		if ids.count(student_id) == 0:
 			print(f"'{student_id}' not found.")
 		else:
@@ -52,10 +52,12 @@ def update_student():
 		if key == "Student ID":
 			continue
 		
+		value = input(f"   (UPD)[{key.title()}]: ")
+		
 		if key in ("Age", "Grade"):
-			student.update({key: int(input(f"   (UPD)[{key.title()}]: "))})
+			student.update({key: int(value)})
 		else:
-			student.update({key: input(f"   (UPD)[{key.title()}]: ")})
+			student.update({key: value.title()})
 
 	students.update({student_id: student})
 	print("Student information updated successfully.")
@@ -139,8 +141,16 @@ def add_update_mark():
 	time.sleep(1)
 
 def get_marks_grade(mark):
-	marks_grid = {90: "A+", 80: "A", 70: "B", 60: "C"}
-	return marks_grid.get(mark, "F")
+	if mark >= 90:
+		return "A+"
+	elif mark >= 80:
+		return "A"
+	elif mark >= 70:
+		return "B"
+	elif mark >= 60:
+		return "C"
+	else:
+		return "F"
 
 def view_student():
 	global students, ids
