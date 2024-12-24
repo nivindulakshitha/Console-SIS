@@ -9,12 +9,12 @@ def register_student():
 	student = {"Student ID": "", "Name": "", "Age": 0, "Grade": 0}
 
 	for key in student.keys():
-		value = input(f"\t[{key.lower()}]: ")
+		value = input(f"   [{key.lower()}]: ")
 
 		if key == "Student ID":
-		
+
 			while ids.count(value) > 0:
-				value = input(f"\t[{key.lower()}]: ")
+				value = input(f"   [{key.lower()}]: ")
 			else:
 				student.update({key: value})
 
@@ -24,10 +24,10 @@ def register_student():
 			else:
 				student.update({key: value})
 	
-	students.append(student)
+	students.update({student.get("Student ID"): student})
 	ids.append(student.get("Student ID"))
 
-students = []
+students = {}
 ids = []
 menu = """
 School Management System
