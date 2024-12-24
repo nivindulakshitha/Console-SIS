@@ -1,4 +1,4 @@
-import os
+import os, time
 
 def print_menu():
 	global menu
@@ -26,6 +26,8 @@ def register_student():
 	
 	students.update({student.get("Student ID"): student})
 	ids.append(student.get("Student ID"))
+	print("Student registered successfully.")
+	time.sleep(1)
 
 def update_student():
 	global students, ids
@@ -50,7 +52,33 @@ def update_student():
 			student.update({key: input(f"   (UPD)[{key.lower()}]: ")})
 
 	students.update({student_id: student})
+	print("Student information updated successfully.")
+	time.sleep(1)
 
+def remove_student():
+	global students, ids
+	
+	while True:
+		student_id = input("   (REM)[student id]: ")
+		if ids.count(student_id) == 0:
+			print(f"'{student_id}' not found.")
+		else:
+			break
+
+	for key, value in students.get(student_id).items():
+		if key == "Student ID":
+			continue
+		print(f"   [{key.lower()}]: {value}")
+
+	is_confirmed = input("Are you sure you want to remove this student? (y/n): ")
+
+	if is_confirmed.lower() == "y":
+		students.pop(student_id)
+		ids.remove(student_id)
+		print("Student removed successfully.")
+	else:
+		print("Operation cancelled.")
+	time.sleep(1)
 
 students = {}
 ids = []
@@ -77,6 +105,9 @@ while True:
 
 	elif feature == 2:
 		update_student()
+
+	elif feature == 4:
+		remove_student()
 
 	else:
 		if feature != 6:
