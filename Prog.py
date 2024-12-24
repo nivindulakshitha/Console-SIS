@@ -34,10 +34,12 @@ def register_student():
 			if key in ("Age", "Grade"):
 				student.update({key: int(value)})
 			else:
-				student.update({key: value})
-	
+				student.update({key: value.title()})
+				print(key)
+
 	students.update({student.get("Student ID"): student})
 	ids.append(student.get("Student ID"))
+
 	print("Student registered successfully.")
 	time.sleep(1)
 
@@ -84,7 +86,6 @@ def add_mark(student_id):
 	global students, ids, students_marks
 
 	subjects = {"Mathematics": 0, "Science": 0, "English": 0, "Sinhala": 0}
-	student_id = get_student_id("NEW")
 
 	for key in subjects.keys():
 		while True:
@@ -103,11 +104,10 @@ def update_mark(student_id):
 	global students, ids, students_marks
 
 	subjects = {"Mathematics": 0, "Science": 0, "English": 0, "Sinhala": 0}
-	student_id = get_student_id("UPD")
 		
 	for key in subjects.keys():
 		while True:
-			mark = int(input(f"   ({student_id})[{key.lower()}]: "))
+			mark = int(input(f"   ({student_id})[{key.title()}]: "))
 			if mark < 0 or mark > 100:
 				print("Invalid mark. Please enter a valid mark.")
 			else:
@@ -121,11 +121,11 @@ def update_mark(student_id):
 def add_update_mark():
 	global students, ids, students_marks
 
-	print("1. Add Mark\n2. Update Mark")
+	print("   1. Add Mark\n   2. Update Mark")
 	option = int(input("Select Option: "))
 
 	if option == 1 or option == 2:
-		student_id = get_student_id()
+		student_id = get_student_id("MRK")
 	else:
 		print("Invalid option.")
 		time.sleep(1)
@@ -150,13 +150,13 @@ def view_student():
 	student = students.get(student_id)
 
 	for key, value in student.items():
-		print(f"   [{key.lower()}]: {value}")
+		print(f"   [{key.title()}]: {value}")
 
 	
 	if students_marks.get(student_id) != None:
 		for key, value in students_marks.get(student_id).items():
 			grade = get_marks_grade(value)
-			print(f"   [{key.lower()}]: {value}({grade})")
+			print(f"   [{key.title()}]: {value} ({grade})")
 	else:
 		print("   [marks]: No marks available.")
 	
