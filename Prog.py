@@ -171,7 +171,7 @@ def view_student():
 		print("   [Marks]: No marks available.")
 	
 	time.sleep(1)
-	input("Press Enter key to continue...")
+	input("Press <Enter> key to continue...")
 
 students = {}
 students_marks = {}
