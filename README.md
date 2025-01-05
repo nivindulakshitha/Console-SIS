@@ -107,4 +107,4 @@ Select an option by entering the corresponding number.
 
 ## License
 
-This project is licensed under the MIT License. Feel free to use and modify it as needed.
+This project is licensed under the Creative Common License. Feel free to use and modify it as needed.
